@@ -1,0 +1,43 @@
+<?php
+
+/**
+ * @file
+ * Contains custom_registration module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+/**
+ * Implements hook_help().
+ */
+function custom_registration_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nestle module.
+    case 'help.page.custom_registration':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom module to build a custom registration form') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function custom_registration_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'user_registration':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('New user is registered');
+      $message['body'][] = $params['message'];
+      break;
+  }
+}
+

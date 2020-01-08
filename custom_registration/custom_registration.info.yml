@@ -1,0 +1,5 @@
+name: 'Custom Registration'
+type: module
+description: 'Custom module to build a custom registration form'
+core: 8.x
+package: 'Custom'

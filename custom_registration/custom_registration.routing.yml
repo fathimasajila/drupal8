@@ -1,0 +1,14 @@
+custom_registration.user_form:
+  path: '/user/custom-registration'
+  defaults:
+    _form: '\Drupal\custom_registration\Form\UserRegistrationForm'
+    _title: 'Custom Registration Form'
+  requirements:
+    _permission: 'access content'
+custom_registration.user_list:
+  path: '/user/list' 
+  defaults: 
+    _controller: '\Drupal\custom_registration\Controller\UserListController::get_user_list' 
+    _title: 'User List'
+  requirements: 
+    _permission: 'access content' 
